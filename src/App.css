@@ -8,11 +8,27 @@ html {
   text-align: center;
 }
 
-.listItem {
+/* .listItem {
   margin: 15px auto;
   width: 20%;
   height: 50px;
   background-color: yellow;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+} */
+
+.listItem {
+  list-style: none;
+  padding: 0px;
+}
+
+.listItem li {
+  margin: 15px auto;
+  width: 20%;
+  height: 50px;
+  background-color: rgba(255,255,255,.5);
   border-radius: 10px;
   align-items: center;
   justify-content: center;
@@ -24,16 +40,21 @@ html {
 }
 
 #text-input {
-  padding: 10px 10px 11px 10px;
-  background-color: #f7f7f7;
-  width: 20%;
+  padding: 10px;
+  font-size: 16px;
+  width: 300px;
+  border: 2px solid #FFF;
 }
 
 #red-button {
-  height: 38px;
-  width: 50px;
+  padding: 10px;
+  font-size: 16px;
   background-color: rgb(173,19,57);
-  color: white;
+  color: #FFF;
+  border: 2px solid rgb(173,19,57);
   font-weight: bold;
-  border-color: rgb(173,19,57);
+}
+
+#red-button:hover {
+  background-color: rgb(145, 16, 48);
 }

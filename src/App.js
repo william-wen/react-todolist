@@ -1,59 +1,58 @@
 import React, { Component } from 'react';
-import './App.css';
 import TodoItem from './TodoItem.js';
+import './App.css';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      value: '',
       listItems: [],
     };
+    this.addItem = this.addItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
-  deleteItem = (display) => {
-    let tempList = this.state.listItems;
-    let keyArray = this.state.listItems.map((listItem) =>
-      listItem.key
-    );
-    let index = keyArray.indexOf(display);
-    if (index > -1){
-      tempList.splice(index, 1);
+  addItem = (e) => {
+    if (this._inputElement.value !== ""){
+      var newItem = {
+        text: this._inputElement.value,
+        key: Date.now()
+      };
+
+      this.setState((prevState) => {
+        return {
+          listItems: prevState.listItems.concat(newItem)
+        };
+      });
     }
-    this.setState({
-      listItems: tempList
-    });
-  }
 
-  handleChange = e => {
-    this.setState({
-      value: e.target.value,
-    })
-  }
-
-  handleSubmit = (e) => {
-    let arrayItem = <TodoItem onClick={(display) => this.deleteItem(display)} display={this.state.value} key={this.state.value}/>;
-    this.setState({
-      listItems: this.state.listItems.concat(arrayItem),
-      value: ""
-    });
+    this._inputElement.value="";
     e.preventDefault();
+  }
+
+  deleteItem(key) {
+    var filteredItems = this.state.listItems.filter( function(item){
+      return (item.key !== key)
+    });
+
+    this.setState({
+      listItems: filteredItems
+    });
   }
 
   render () {
     const { listItems } = this.state;
-    console.log(listItems);
     return (
       <div className="App">
         <div className="page-cover">
           <div className="inputAndButton">
             <h1> Todo List </h1>
-            <form onSubmit={this.handleSubmit}>
-              <input id="text-input" type="text" value={this.state.value} onChange={this.handleChange} autoFocus="autofocus"/>
-              <button id="red-button"> Add </button>
+            <form onSubmit={this.addItem}>
+              <input ref={(a) => this._inputElement = a} id="text-input" placeholder="Enter Task" autoFocus="autofocus"/>
+              <button type="submit" id="red-button"> Add </button>
             </form>
           </div>
-          {listItems}
+          <TodoItem entries={this.state.listItems} delete={(key) => this.deleteItem(key)}/>
         </div>
       </div>
     );

@@ -1,3 +1,39 @@
-.App {
+html {
+  background-color: rgb(152,206,237)
+}
+
+.page-cover {
+  background-size: cover;
+  height: calc(100vh - 150px);
   text-align: center;
+}
+
+.listItem {
+  margin: 15px auto;
+  width: 20%;
+  height: 50px;
+  background-color: yellow;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.inputAndButton {
+  margin-top: 150px;
+}
+
+#text-input {
+  padding: 10px 10px 11px 10px;
+  background-color: #f7f7f7;
+  width: 20%;
+}
+
+#red-button {
+  height: 38px;
+  width: 50px;
+  background-color: rgb(173,19,57);
+  color: white;
+  font-weight: bold;
+  border-color: rgb(173,19,57);
 }

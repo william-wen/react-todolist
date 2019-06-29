@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import TodoItem from './TodoItem.js';
 import './App.css';
 
@@ -31,12 +32,23 @@ class App extends Component {
   }
 
   deleteItem(key) {
-    var filteredItems = this.state.listItems.filter( function(item){
-      return (item.key !== key)
-    });
-
+    // var filteredItems = this.state.listItems.filter( function(item){
+    //   return (item.key !== key)
+    // });
+    //
+    // this.setState({
+    //   listItems: filteredItems
+    // });
+    let tempList = this.state.listItems;
+    let keyArray = this.state.listItems.map((listItem) =>
+      listItem.key
+    );
+    let index = keyArray.indexOf(key);
+    if (index > -1){
+      tempList.splice(index, 1);
+    }
     this.setState({
-      listItems: filteredItems
+      listItems: tempList
     });
   }
 
